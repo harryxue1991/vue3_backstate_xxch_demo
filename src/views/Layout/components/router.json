@@ -1,0 +1,84 @@
+[
+  {
+    "menuChineseName": "用户",
+    "menuCron": "icon-user",
+    "child": [
+      {
+        "menuChineseName": "帐号管理",
+        "menuRoute": "/home"
+      },
+      {
+        "menuChineseName": "角色管理",
+        "menuRoute": "/page_list"
+      }
+    ]
+  },
+  {
+    "menuChineseName": "客户",
+    "menuCron": "icon-custom",
+    "child": [
+      {
+        "menuChineseName": "企业管理",
+        "menuRoute": "/CustomerManage",
+        "disable": true
+      },
+      {
+        "menuChineseName": "企业帐号",
+        "menuRoute": "/CustomerAccount",
+        "disable": true
+      },
+      {
+        "menuChineseName": "售前帐号",
+        "menuRoute": "/PreSalesAccount",
+        "disable": true
+      }
+    ]
+  },
+  {
+    "menuChineseName": "项目",
+    "menuCron": "icon-project",
+    "child": [
+      {
+        "menuChineseName": "项目管理",
+        "menuRoute": "/ProjectIndex",
+        "disable": true
+      },
+      {
+        "menuChineseName": "画像池管理",
+        "menuRoute": "/ProjectPortrait",
+        "disable": true
+      },
+      {
+        "menuChineseName": "画像池数据",
+        "menuRoute": "/ProjectPortraitData",
+        "disable": true
+      },
+      {
+        "menuChineseName": "企业项目",
+        "menuRoute": "/EnterpriseProject",
+        "disable": true
+      },
+      {
+        "menuChineseName": "项目画像池",
+        "menuRoute": "/ProjectPortraitPool",
+        "disable": true
+      }
+    ]
+  },
+  {
+    "menuChineseName": "售前",
+    "menuCron": "icon-shouye",
+    "child": [
+      {
+        "menuChineseName": "售前管理",
+        "menuRoute": "/PreSalesManage",
+        "disable": true
+      },
+      {
+        "menuChineseName": "项目售前",
+        "menuRoute": "/ProjectPreSale",
+        "disable": true
+      }
+    ]
+  }
+]
