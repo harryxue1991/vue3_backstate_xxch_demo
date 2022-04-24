@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ height: autoHeight }" class="table-wrap">
+  <div class="table-wrap">
     <el-table
       :header-cell-style="{
         backgroundColor: 'rgb(242, 242, 242)',
@@ -11,12 +11,13 @@
       element-loading-text="拼命加载中"
       fit
       stripe
-      @selection-change="handleSelectionChange"
       :span-method="spanMethod"
       highlight-current-row
       ref="table"
-      @sortChange="sortChange"
+      @selection-change="handleSelectionChange"
+      @sort-change="handleSortChange"
     >
+      <!-- 序号 -->
       <el-table-column
         :label="serialName"
         type="index"
@@ -24,6 +25,7 @@
         v-if="serial"
       >
       </el-table-column>
+      <!-- table选择 -->
       <el-table-column
         v-if="selection"
         align="center"
@@ -56,13 +58,14 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页 -->
     <div class="p_page" v-if="hasPage">
       <el-pagination
         @size-change="changeSize"
         @current-change="changePage"
         :current-page="currentPage"
         :page-sizes="[10, 40, 100]"
-        :page-size="size"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="count"
       ></el-pagination>
@@ -70,100 +73,87 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ms-table",
-  props: {
-    columns: {
-      type: Array,
-    },
-    data: {
-      type: Array,
-    },
-    spanMethod: {
-      type: Function,
-    },
-    serialName: {
-      type: String,
-      default: "序号",
-    },
-    serial: {
-      type: Boolean,
-      default: false,
-    },
-    border: {
-      type: Boolean,
-      default: true,
-    },
-    stripe: {
-      type: Boolean,
-      default: true,
-    },
-    fit: {
-      type: Boolean,
-      default: true,
-    },
-    "highlight-current-row": {
-      type: Boolean,
-      default: true,
-    },
-    selection: {
-      type: Boolean,
-      default: false,
-    },
-    count: {
-      type: Number,
-      default: 0,
-    },
-    currentPage: {
-      type: Number,
-      default: 1,
-    },
-    hasPage: {
-      type: Boolean,
-      default: true,
-    },
-    size: {
-      type: Number,
-      default: 10,
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
+<script setup>
+defineProps({
+  columns: {
+    type: Array,
   },
-  data() {
-    return {
-      autoHeight: "",
-      tableHeight: 0,
-    };
+  data: {
+    type: Array,
   },
-  methods: {
-    handleSelectionChange(val) {
-      this.$emit("handleSelectionChange", val);
-    },
-    checkSelectable(row) {
-      return !row.isSelectable;
-    },
-    sortChange(val) {
-      this.$emit("sortChange", val);
-    },
-    changeSize(val) {
-      this.$emit("changeSize", val);
-    },
-    changePage(val) {
-      this.$emit("changePage", val);
-      this.$emit("update:currentPage", val);
-    },
+  spanMethod: {
+    type: Function,
   },
-  watch: {
-    data: {
-      handler: function (newVal) {
-        console.log(newVal, "newVal");
-        // this.data = newVal;
-      },
-    },
+  serialName: {
+    type: String,
+    default: "序号",
   },
+  serial: {
+    type: Boolean,
+    default: false,
+  },
+  border: {
+    type: Boolean,
+    default: true,
+  },
+  stripe: {
+    type: Boolean,
+    default: true,
+  },
+  fit: {
+    type: Boolean,
+    default: true,
+  },
+  highlightCurrentRow: {
+    type: Boolean,
+    default: true,
+  },
+  selection: {
+    type: Boolean,
+    default: false,
+  },
+
+  currentPage: {
+    type: Number,
+    default: 1,
+  },
+  hasPage: {
+    type: Boolean,
+    default: true,
+  },
+  pageSize: {
+    type: Number,
+    default: 10,
+  },
+  count: {
+    type: Number,
+    default: 0,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
+const emit = defineEmits();
+
+// table
+const checkSelectable = (row) => {
+  return !row.isSelectable;
+};
+const handleSelectionChange = (val) => {
+  emit("handleSelectionChange", val);
+};
+const handleSortChange = (val) => {
+  emit("handleSortChange", val);
+};
+
+// page
+const changeSize = (val) => {
+  emit("changeSize", val);
+};
+const changePage = (val) => {
+  emit("changePage", val);
+  emit("update:currentPage", val);
 };
 </script>
 

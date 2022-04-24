@@ -91,6 +91,8 @@ const handleLogin = (formEl) => {
       loginStore.setUserInfo(res.data.userInfo);
       loginStore.setToken(res.data.token);
       router.push("/");
+    } else {
+      LoadingSetFalse(false);
     }
   });
 };
