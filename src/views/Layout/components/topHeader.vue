@@ -33,7 +33,7 @@
 // import { ref } from "vue";
 import { ElMessageBox } from "element-plus";
 import { useRouter } from "vue-router";
-import { useLoginStore } from "@/store/index.js";
+import { useLoginStore } from "@/store";
 
 const router = useRouter();
 const { userInfo } = useLoginStore();

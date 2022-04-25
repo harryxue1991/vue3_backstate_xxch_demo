@@ -60,11 +60,11 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import { LOGIN } from "@/api/index.js";
+import { LOGIN } from "@/api";
 
-import useLoading from "@/hooks/useLoading/index.js";
+import useLoading from "@/hooks/useLoading";
 import { useRouter } from "vue-router";
-import { useLoginStore } from "@/store/index.js";
+import { useLoginStore } from "@/store";
 
 const { Loading, LoadingSetTrue, LoadingSetFalse } = useLoading(false);
 const router = useRouter();
@@ -86,7 +86,7 @@ const handleLogin = (formEl) => {
   LoadingSetTrue(true);
   formEl.validate(async (valid) => {
     if (valid) {
-      const res = await LOGIN();
+      const res = await LOGIN(loginForm);
       LoadingSetFalse(false);
       loginStore.setUserInfo(res.data.userInfo);
       loginStore.setToken(res.data.token);

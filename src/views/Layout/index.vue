@@ -33,6 +33,9 @@ import mainContent from "./components/mainContent.vue";
   height: calc(100vh - 60px);
   background-color: #545c64;
 }
+.el-main {
+  height: calc(100vh - 60px);
+}
 /* 进入之前和离开后的样式 */
 .v-enter-from,
 .v-leave-to {

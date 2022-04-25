@@ -8,6 +8,6 @@ import "element-plus/dist/index.css";
 // })
 
 export default (app) => {
-  app.use(ElementPlus, { size: "default", zIndex: 3000 });
+  app.use(ElementPlus, { size: "small", zIndex: 3000 });
   // app.use(i18n)
 };

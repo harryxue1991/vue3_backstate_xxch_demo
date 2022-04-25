@@ -61,12 +61,15 @@
     <!-- 分页 -->
     <div class="p_page" v-if="hasPage">
       <el-pagination
+        small="small"
         @size-change="changeSize"
         @current-change="changePage"
         :current-page="currentPage"
         :page-sizes="[10, 40, 100]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
+        prev-text="上一页"
+        next-text="下一页"
         :total="count"
       ></el-pagination>
     </div>

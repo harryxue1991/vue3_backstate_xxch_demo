@@ -1,4 +1,9 @@
 <template>
+  <ms-search
+    v-model:searchParams="searchParams"
+    :searchForm="searchForm"
+    @onSearch="(currentPage = 1), getInit(searchParams)"
+  ></ms-search>
   <ms-table
     :columns="columns"
     :currentPage="currentPage"
@@ -14,10 +19,41 @@
 
 <script setup>
 import { resolveComponent } from "vue";
-import { GET_LIST } from "@/api/index";
+import { GET_LIST } from "@/api";
 import { ElMessage } from "element-plus";
 
-import userTable from "@/hooks/useTable/index";
+// 引入hooks
+import useSearch from "@/hooks/useSearch";
+import userTable from "@/hooks/useTable";
+
+// search 内容
+const { searchParams, searchForm } = useSearch({
+  searchParams: {},
+  searchForm: [
+    { component: "el-input", label: "内容填充", key: "endAt" },
+    {
+      component: "el-select",
+      label: "状态",
+      key: "status",
+      componentChild: [
+        { component: "el-option", value: "1", label: "正常" },
+        { component: "el-option", value: "2", label: "非正常" },
+      ],
+    },
+    {
+      component: "el-date-picker",
+      label: "时间",
+      key: "time",
+      valueFormat: "YYYY-MM-DD",
+    },
+    // {
+    //   component: "ShCustom",
+    //   key: "custom",
+    // },
+  ],
+});
+
+// table 内容
 const {
   columns,
   tableData,
@@ -58,10 +94,12 @@ const {
     },
   ],
   getList: GET_LIST,
+  searchParams: searchParams,
 });
-getInit();
 
-// 编辑
+// hooks暴露出来的获取页面列表方法
+getInit();
+// 编辑功能demo
 const handleEdit = (scope) => {
   ElMessage({ message: `编辑：${scope.row.endAt}`, type: "success" });
 };

@@ -1,16 +1,16 @@
 import { ref, reactive, toRefs } from "vue";
 
-const useTable = ({ columns, getList }) => {
+const useTable = ({ columns, getList, searchParams }) => {
   const currentPage = ref(1);
   const pageSize = ref(10);
   const totalPage = ref(0);
   const tableLoading = ref(false);
-
   const state = reactive({
     columns: [...columns],
     tableData: [],
+    searchParams: { ...searchParams },
   });
-
+  //   翻页方法
   const changePage = (val) => {
     currentPage.value = val;
     getInit();
@@ -19,11 +19,15 @@ const useTable = ({ columns, getList }) => {
     pageSize.value = val;
     getInit();
   };
-
-  const getInit = async () => {
+  //   数据请求方法
+  const getInit = async (obj) => {
     tableLoading.value = true;
     try {
-      const res = await getList();
+      const res = await getList({
+        page: currentPage.value,
+        per: pageSize.value,
+        ...obj,
+      });
       tableLoading.value = false;
       totalPage.value = res.total;
       state.tableData = res.data;
