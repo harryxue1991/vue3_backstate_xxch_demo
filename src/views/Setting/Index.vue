@@ -6,7 +6,7 @@
 <script setup>
 import { ref } from "vue";
 
-const msg = ref("Home");
+const msg = ref("Hello World");
 </script>
 
 <style scoped lang="scss">

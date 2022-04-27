@@ -14,7 +14,6 @@ const routes = [
     meta: { title: "404" },
     component: () => import("@/views/404.vue"),
   },
-
   {
     path: "/",
     component: Layout,
@@ -28,12 +27,12 @@ const routes = [
       {
         path: "/page_list",
         name: "PageList",
-        meta: { title: "列表页" },
+        meta: { title: "列表页", keepAlive: true },
         component: () => import("@/views/Setting/PageList.vue"),
       },
     ],
   },
-  // { path: "/:catchAll(.*)", redirect: "/404" },
+  { path: "/:catchAll(.*)", redirect: "/404" },
 ];
 
 const router = createRouter({

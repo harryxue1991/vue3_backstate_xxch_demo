@@ -1,21 +1,28 @@
 <template>
-  <ms-search
-    v-model:searchParams="searchParams"
-    :searchForm="searchForm"
-    @onSearch="(currentPage = 1), getInit(searchParams)"
-  ></ms-search>
-  <ms-table
-    :columns="columns"
-    :currentPage="currentPage"
-    :pageSize="pageSize"
-    :data="tableData"
-    :loading="tableLoading"
-    @changePage="changePage"
-    @changeSize="changeSize"
-    :count="totalPage"
-  >
-  </ms-table>
+  <div>
+    <ms-search
+      v-model:searchParams="searchParams"
+      :searchForm="searchForm"
+      @onSearch="(currentPage = 1), getInit(searchParams)"
+    ></ms-search>
+    <ms-table
+      :columns="columns"
+      :currentPage="currentPage"
+      :pageSize="pageSize"
+      :data="tableData"
+      :loading="tableLoading"
+      @changePage="changePage"
+      @changeSize="changeSize"
+      :count="totalPage"
+    >
+    </ms-table>
+  </div>
 </template>
+
+<script>
+// 使用keep-alive 的 include 的时候用到
+export default { name: "PageList" };
+</script>
 
 <script setup>
 import { resolveComponent } from "vue";
@@ -46,10 +53,11 @@ const { searchParams, searchForm } = useSearch({
       key: "time",
       valueFormat: "YYYY-MM-DD",
     },
-    // {
-    //   component: "ShCustom",
-    //   key: "custom",
-    // },
+    {
+      component: "ShCustom",
+      label: "自定义",
+      key: "custom",
+    },
   ],
 });
 

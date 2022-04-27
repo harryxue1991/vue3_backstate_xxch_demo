@@ -6,10 +6,7 @@
       </div>
       <div class="box">
         <div class="bg1">
-          <img
-            src="https://static.medsci.cn/public-image/ms-image/827721a0-f5c5-11eb-b319-cd51f388f4e7_login.png"
-            alt=""
-          />
+          <img src="@/assets/base.png" alt="" />
         </div>
         <!-- form start -->
         <div class="form">
@@ -26,6 +23,7 @@
                 <el-input
                   type="text"
                   v-model="loginForm.username"
+                  size="default"
                   autoComplete="on"
                   placeholder="请输入帐号"
                 />
@@ -34,6 +32,7 @@
                 <el-input
                   name="password"
                   :type="pwdType"
+                  size="default"
                   @keyup.enter="handleLogin(form)"
                   v-model="loginForm.password"
                   autoComplete="on"
@@ -43,6 +42,7 @@
               <el-form-item>
                 <el-button
                   type="primary"
+                  size="default"
                   style="width: 100%"
                   :loading="Loading"
                   @click.prevent="handleLogin(form)"

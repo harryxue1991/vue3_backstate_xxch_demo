@@ -4,10 +4,11 @@ import router from "./router";
 import { createPinia } from "pinia";
 const pinia = createPinia();
 
+import "@/router/permission";
+import "normalize.css/normalize.css";
+
 import installElementPlus from "@/plugins/element";
 import installComponent from "@/components/index";
-
-import "normalize.css/normalize.css";
 
 const app = createApp(App);
 installElementPlus(app);

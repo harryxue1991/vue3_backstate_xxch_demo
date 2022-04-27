@@ -1,24 +1,12 @@
 <template>
   <div class="wscn-http404">
     <div class="pic-404">
-      <img
-        class="pic-404__parent"
-        src="https://static.medsci.cn/public-image/ms-image/942d6350-f5cf-11eb-b319-cd51f388f4e7_404.png"
-        alt="404"
-      />
-      <img
-        class="pic-404__child left"
-        src="https://static.medsci.cn/public-image/ms-image/942d6350-f5cf-11eb-b319-cd51f388f4e7_404_cloud.png"
-        alt="404"
-      />
-      <img
-        class="pic-404__child mid"
-        src="https://static.medsci.cn/public-image/ms-image/942d6350-f5cf-11eb-b319-cd51f388f4e7_404_cloud.png"
-        alt="404"
-      />
+      <img class="pic-404__parent" src="@/assets/404.png" alt="404" />
+      <img class="pic-404__child left" src="@/assets/404_cloud.png" alt="404" />
+      <img class="pic-404__child mid" src="@/assets/404_cloud.png" alt="404" />
       <img
         class="pic-404__child right"
-        src="https://static.medsci.cn/public-image/ms-image/942d6350-f5cf-11eb-b319-cd51f388f4e7_404_cloud.png"
+        src="@/assets/404_cloud.png"
         alt="404"
       />
     </div>

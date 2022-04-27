@@ -35,10 +35,16 @@
   </el-form>
 </template>
 
-<script setup>
-// 这样注册不行
-// import ShCustom from "./component/sh-custom.vue";
+<script>
+import ShCustom from "./component/sh-custom.vue";
+export default {
+  components: {
+    ShCustom,
+  },
+};
+</script>
 
+<script setup>
 const props = defineProps({
   searchForm: {
     type: Array,

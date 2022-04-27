@@ -12,11 +12,7 @@
         class="top-user-drop"
       >
         <span class="el-dropdown-link">
-          <img
-            class="own-icon"
-            src="https://static.medsci.cn/public-image/ms-image/498bf9c0-fd85-11eb-a21c-69cb31ac8c29_home4.png"
-            alt=""
-          />
+          <img class="own-icon" src="@/assets/headers.png" alt="" />
           <span class="own">{{ userInfo.name }}</span>
         </span>
         <template #dropdown>
