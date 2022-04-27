@@ -13,13 +13,13 @@ NProgress.configure({
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const { token } = useLoginStore();
-  const { setInclude, setExclude } = useSettingStore();
+  const { setInclude } = useSettingStore();
 
   document.title = `${to.meta.title}`;
   if (to.meta.keepAlive) {
-    setInclude(to.name);
-  } else {
-    setExclude(to.name);
+    if (to.name) {
+      setInclude(to.name);
+    }
   }
   if (!token && to.path !== "/login") {
     next("/login");
