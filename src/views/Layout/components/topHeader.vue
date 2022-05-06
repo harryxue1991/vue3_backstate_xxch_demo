@@ -39,10 +39,14 @@ const drop_command = () => {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning",
-  }).then(async () => {
-    // 自己补充退出逻辑
-    router.push("/login");
-  });
+  })
+    .then(async () => {
+      // 自己补充退出逻辑
+      router.replace("/login");
+    })
+    .catch(() => {
+      console.log("取消");
+    });
 };
 </script>
 
@@ -51,7 +55,6 @@ const drop_command = () => {
   border-bottom: 1px solid #eeeeee;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
   .icon {
     height: 48px;
     line-height: 52px;

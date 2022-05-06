@@ -26,6 +26,10 @@ import mainContent from "./components/mainContent.vue";
 </script>
 
 <style scoped lang="scss">
+.el-header {
+  --el-header-padding: 0;
+  background-color: $xc-theme-bg;
+}
 :deep(.el-aside) {
   height: calc(100vh - 60px);
   background-color: #545c64;

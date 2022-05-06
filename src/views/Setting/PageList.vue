@@ -51,10 +51,12 @@ const { searchParams, searchForm } = useSearch({
       component: "el-date-picker",
       label: "时间",
       key: "time",
-      valueFormat: "YYYY-MM-DD",
+      options: {
+        valueFormat: "YYYY-MM-DD",
+      },
     },
     {
-      component: "ShCustom",
+      component: "sh-custom",
       label: "自定义",
       key: "custom",
     },

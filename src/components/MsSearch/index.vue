@@ -8,15 +8,15 @@
           :key="index"
         >
           <component
-            :is="item.component"
+            :is="getComponent(item.component)"
+            v-bind="{ ...item.options }"
             v-model="searchParams[item.key]"
             :placeholder="item.placeholder || `请填写${item.label}`"
-            :value-format="item.valueFormat"
           >
             <template v-if="item.componentChild && item.componentChild.length">
               <component
                 v-for="(val, i) in item.componentChild"
-                :is="val.component"
+                :is="getComponent(val.component)"
                 :value="val.value"
                 :label="val.label"
                 :key="i"
@@ -35,16 +35,9 @@
   </el-form>
 </template>
 
-<script>
-import ShCustom from "./component/sh-custom.vue";
-export default {
-  components: {
-    ShCustom,
-  },
-};
-</script>
-
 <script setup>
+import componentMap from "./componentMap";
+
 const props = defineProps({
   searchForm: {
     type: Array,
@@ -59,6 +52,10 @@ const props = defineProps({
     },
   },
 });
+
+const getComponent = (component) => {
+  return typeof component === "string" ? componentMap[component] : component;
+};
 
 const emit = defineEmits();
 
