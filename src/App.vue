@@ -5,21 +5,20 @@
 </template>
 
 <script setup>
-import { usePreferredDark } from "@vueuse/core";
-import { watch } from "vue";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
-
+import useSettingStore from "@/store/useSettingStore";
+import { watch } from "vue";
+const settingStore = useSettingStore();
 // 系统颜色。可以后续增加store来手动控制
-const isDark = usePreferredDark();
-
-watch(isDark, () => {
-  setHtmlDark();
-});
-
-document.querySelector("html").setAttribute("class", "dark");
+watch(
+  () => settingStore.isDark,
+  () => {
+    setHtmlDark();
+  }
+);
 
 const setHtmlDark = () => {
-  if (isDark.value) {
+  if (settingStore.isDark) {
     document.querySelector("html").setAttribute("class", "dark");
     document
       .getElementsByTagName("body")[0]
@@ -31,7 +30,6 @@ const setHtmlDark = () => {
       .style.setProperty("--theme-bg", "#ffffff");
   }
 };
-
 setHtmlDark();
 </script>
 

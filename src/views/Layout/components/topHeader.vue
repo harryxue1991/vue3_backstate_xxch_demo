@@ -5,6 +5,7 @@
     </div>
     <div class="top-user">
       <span class="time">上次登录时间：2022.04.29</span>
+      <el-switch v-model="dark" @change="onChange" />
       <el-dropdown
         trigger="click"
         size="medium"
@@ -26,13 +27,21 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
+import { ref } from "vue";
 import { ElMessageBox } from "element-plus";
 import { useRouter } from "vue-router";
 import { useLoginStore } from "@/store";
+import useSettingStore from "@/store/useSettingStore";
+const { isDark, setIsDark } = useSettingStore();
+
+const dark = ref(isDark);
 
 const router = useRouter();
 const { userInfo } = useLoginStore();
+
+const onChange = (val) => {
+  setIsDark(val);
+};
 
 const drop_command = () => {
   ElMessageBox.confirm(`确认退出平台？`, {
@@ -83,7 +92,6 @@ const drop_command = () => {
     color: rgba(0, 0, 0, 0.45);
     font-size: 14px;
     padding-right: 18px;
-    border-right: 1px solid #979797;
   }
   .own-icon {
     width: 24px;

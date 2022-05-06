@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { usePreferredDark } from "@vueuse/core";
 
 export default defineStore({
   id: "setting",
@@ -6,9 +7,13 @@ export default defineStore({
     return {
       include: [],
       exclude: [],
+      isDark: usePreferredDark(),
     };
   },
   actions: {
+    setIsDark(val) {
+      this.isDark = val;
+    },
     setInclude(name) {
       if (!this.include.includes(name)) {
         this.include.push(name);
