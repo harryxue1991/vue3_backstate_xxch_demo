@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/views/Layout/index.vue";
 
 const routes = [
@@ -30,13 +30,19 @@ const routes = [
         meta: { title: "列表页", keepAlive: true },
         component: () => import("@/views/Setting/PageList.vue"),
       },
+      {
+        path: "/demo",
+        name: "Demo",
+        meta: { title: "demo" },
+        component: () => import("@/views/Setting/Demo.vue"),
+      },
     ],
   },
   { path: "/:catchAll(.*)", redirect: "/404" },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

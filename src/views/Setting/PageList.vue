@@ -27,7 +27,7 @@ export default { name: "PageList" };
 <script setup>
 import { resolveComponent } from "vue";
 import { GET_LIST } from "@/api";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 // 引入hooks
 import useSearch from "@/hooks/useSearch";
@@ -87,6 +87,13 @@ const {
         const items = [
           { label: "编辑", func: "edit" },
           { label: "删除", func: "delete", type: "danger" },
+          {
+            label: "弹出删除",
+            type: "info",
+            warningText: "哈哈，是否要删除内容？",
+            isPopover: true,
+            func: "popupDelete",
+          },
         ];
         return h(msHandle, {
           items,
@@ -94,10 +101,24 @@ const {
             handleEdit(scope);
           },
           onDelete: () => {
-            ElMessage({
-              message: `删除：${scope.row.endAt}`,
-              type: "success",
+            ElMessageBox({
+              type: "info",
+              title: "警告⚠️",
+              showCancelButton: true,
+              message: "是否删除内容",
+              callback: async (action) => {
+                if (action === "confirm") {
+                  ElMessage({
+                    message: `删除：${scope.row.endAt}`,
+                    type: "success",
+                  });
+                  getInit();
+                }
+              },
             });
+          },
+          onPopupDelete: () => {
+            handleDelete(scope);
           },
         });
       },
@@ -110,8 +131,12 @@ const {
 // hooks暴露出来的获取页面列表方法
 getInit();
 // 编辑功能demo
-const handleEdit = (scope) => {
+const handleEdit = () => {};
+
+// 删除功能demo
+const handleDelete = async (scope) => {
   ElMessage({ message: `编辑：${scope.row.endAt}`, type: "success" });
+  getInit();
 };
 </script>
 
