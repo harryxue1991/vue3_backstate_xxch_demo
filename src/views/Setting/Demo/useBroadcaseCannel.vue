@@ -11,7 +11,7 @@ watch(data, () => {
 </script>
 
 <template>
-  页面事件数据传递
+  页面事件数据传递：
   <div>
     <p>
       Supported:

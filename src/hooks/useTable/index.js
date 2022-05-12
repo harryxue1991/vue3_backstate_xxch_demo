@@ -1,10 +1,12 @@
 import { ref, reactive, toRefs } from "vue";
+import { useToggle } from "@vueuse/core";
 
 const useTable = ({ columns, getList, searchParams }) => {
   const currentPage = ref(1);
   const pageSize = ref(10);
   const totalPage = ref(0);
-  const tableLoading = ref(false);
+  const [value] = useToggle(false);
+  const tableLoading = value;
   const state = reactive({
     columns: [...columns],
     tableData: [],
